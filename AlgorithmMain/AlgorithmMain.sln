@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmMain", "AlgorithmMain\AlgorithmMain.csproj", "{9432EB38-F4D8-4A9D-9833-6B57F8E81D3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryProject", "LibraryProject\LibraryProject.csproj", "{895DADD9-2652-42ED-A48B-5C8AB3D250B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "monoLibrary", "LibraryProject\monoLibrary.csproj", "{895DADD9-2652-42ED-A48B-5C8AB3D250B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
