@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlgorithmMain
+namespace Library
 {
     public class DataNode<T>
     {
@@ -15,9 +15,12 @@ namespace AlgorithmMain
         // 해당 노드가 접근되었는지 확인하는 bool값
         public bool marked;
 
-        public T setNodeData { set => data = value; }
+        #region ===== 캡슐화
+        //data는 null 이 될 수 없게 선언  
+        [System.Diagnostics.CodeAnalysis.MemberNotNull(nameof(data))]     
+        public T setNodeData { set => data = value ?? throw new ArgumentException("data is required"); }
         public T getNodeData { get => data; }
-
+        #endregion
 
         public DataNode(T data)
         {

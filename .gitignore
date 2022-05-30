@@ -35,3 +35,5 @@ obj/
 wifiProfile/
 .vs/
 
+AlgorithmMain/AlgorithmMain/bin
+AlgorithmMain/LibraryProject/bin
