@@ -24,7 +24,7 @@ namespace monoLibrary
             queueBFS = new Queue<DataNode<T>>();
 
         }
-        private bool BFSEnqueue(DataNode<T> _item)
+        private bool BFS_Enqueue(DataNode<T> _item)
         {
             if (_item.marked == true) return false;
 
@@ -38,7 +38,7 @@ namespace monoLibrary
         public void SimpleBFS_showAllNode(int _startIndex)
         {
             // 스타트 노드 넣기
-            BFSEnqueue(nodeList[_startIndex]);
+            BFS_Enqueue(nodeList[_startIndex]);
 
             // 큐가 비어질 때 까지 확인
             while (queueBFS.Count > 0)
@@ -52,7 +52,7 @@ namespace monoLibrary
 
                 for (int i = 0; i < _adjacenteNodeCount; i++)
                 {
-                    BFSEnqueue(_currentNode.adjacentNode[i]);
+                    BFS_Enqueue(_currentNode.adjacentNode[i]);
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace monoLibrary
             Console.WriteLine("target Node: " + nodeList[_targetIndex].getNodeData.ToString());
 
             // 스타트 노드 넣기
-            BFSEnqueue(nodeList[_startIndex]);
+            BFS_Enqueue(nodeList[_startIndex]);
 
             bool _bSearch = false;
             // 큐가 비어질 때 까지 확인
@@ -77,7 +77,7 @@ namespace monoLibrary
                 for (int i = 0; i < _adjacenteNodeCount; i++)
                 {
 
-                    if (BFSEnqueue(_currentNode.adjacentNode[i]))
+                    if (BFS_Enqueue(_currentNode.adjacentNode[i]))
                     {
                         // 부모 노드 등록
                         _currentNode.adjacentNode[i].setParentNode = _currentNode;
