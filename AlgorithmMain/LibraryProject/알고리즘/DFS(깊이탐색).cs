@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace monoLibrary
 {
-    public class BFS<T>
+    public class DFS<T>
     {
-        //DataNode 클래스를 가지고 너비탐색 알고리즘
+        //DataNode 클래스를 가지고 깊이우선탐색 알고리즘
         List<DataNode<T>> nodeList;
 
-        Queue<DataNode<T>> queueBFS;
+        Stack<DataNode<T>> stackDFS;
 
-        public BFS( List<DataNode<T>> _dataLIst)
+        public DFS(List<DataNode<T>> _dataLIst)
         {
             //깊은 복사
             nodeList = _dataLIst.ToList();
@@ -21,29 +21,29 @@ namespace monoLibrary
             // 모든 노드 방문 초기화.
             nodeList.ForEach(node => node.marked = false);
 
-            queueBFS = new Queue<DataNode<T>>();
+            stackDFS = new Stack<DataNode<T>>();
 
         }
-        private bool BFSEnqueue(DataNode<T> _item)
+
+        private bool DFSPush(DataNode<T> _item)
         {
             if (_item.marked == true) return false;
 
-            _item.marked = true;            
-            queueBFS.Enqueue(_item);
+            _item.marked = true;
+            stackDFS.Push(_item);
             return true;
 
         }
 
-
-        public void SimpleBFS_showAllNode(int _startIndex)
+        public void SimpleDFS_showAllNode(int _startIndex)
         {
             // 스타트 노드 넣기
-            BFSEnqueue(nodeList[_startIndex]);
+            DFSPush(nodeList[_startIndex]);
 
-            // 큐가 비어질 때 까지 확인
-            while (queueBFS.Count > 0)
+            // 스택이 비어질 때 까지 확인
+            while (stackDFS.Count > 0)
             {
-                var _currentNode = queueBFS.Dequeue();
+                var _currentNode = stackDFS.Pop();
 
                 Console.WriteLine(_currentNode.getNodeData.ToString());
 
@@ -52,24 +52,24 @@ namespace monoLibrary
 
                 for (int i = 0; i < _adjacenteNodeCount; i++)
                 {
-                    BFSEnqueue(_currentNode.adjacentNode[i]);
+                    DFSPush(_currentNode.adjacentNode[i]);
                 }
             }
         }
 
-        public void BFS_PathSearch(int _startIndex, int _targetIndex)
+        public void DFS_PathSearch(int _startIndex, int _targetIndex)
         {
             Console.WriteLine("start Node: " + nodeList[_startIndex].getNodeData.ToString());
             Console.WriteLine("target Node: " + nodeList[_targetIndex].getNodeData.ToString());
 
             // 스타트 노드 넣기
-            BFSEnqueue(nodeList[_startIndex]);
+            DFSPush(nodeList[_startIndex]);
 
             bool _bSearch = false;
-            // 큐가 비어질 때 까지 확인
-            while (queueBFS.Count > 0 && _bSearch == false)
+            // 스택이 비어질 때 까지 확인
+            while (stackDFS.Count > 0 && _bSearch == false)
             {
-                var _currentNode = queueBFS.Dequeue();
+                var _currentNode = stackDFS.Pop();
 
                 // 인접 노드의 수를 미리 계산하고 for문에 넣어준다.
                 int _adjacenteNodeCount = _currentNode.adjacentNode.Count;
@@ -77,17 +77,17 @@ namespace monoLibrary
                 for (int i = 0; i < _adjacenteNodeCount; i++)
                 {
 
-                    if (BFSEnqueue(_currentNode.adjacentNode[i]))
+                    if (DFSPush(_currentNode.adjacentNode[i]))
                     {
                         // 부모 노드 등록
                         _currentNode.adjacentNode[i].setParentNode = _currentNode;
                     }
-                    if(_currentNode.adjacentNode[i] == nodeList[_targetIndex])
+                    if (_currentNode.adjacentNode[i] == nodeList[_targetIndex])
                     {
                         _bSearch = true;
                         break;
                     }
-                }            
+                }
             }
 
             var _node = nodeList[_targetIndex];
@@ -105,6 +105,7 @@ namespace monoLibrary
 
 
         }
+
 
     }
 }
