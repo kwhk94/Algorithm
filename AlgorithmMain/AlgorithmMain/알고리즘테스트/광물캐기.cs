@@ -44,21 +44,20 @@ namespace AlgorithmMain.알고리즘테스트
         public int solution(int[] picks, string[] minerals)
         {
             string[] mMinerals;
-            int MaxLenght = picks.Sum() * 5;
+            int MaxLength = picks.Sum() * 5;
             // 최대로 캘 수 있는 길이를 먼저 설정한다
-            if (MaxLenght < minerals.Length)
+            if (MaxLength <= minerals.Length)
             {
-                mMinerals = new string[MaxLenght];
-                Array.Copy(minerals, mMinerals, MaxLenght);
+                mMinerals = new string[MaxLength];
+                Array.Copy(minerals, mMinerals, MaxLength);
             }
             else
             {
-                mMinerals = new string[minerals.Length];
-                Array.Copy(minerals, 0, mMinerals, 0, minerals.Length);
+                mMinerals = minerals;
             }
 
             // cost를 5개씩 묶어서 계산 후 내림차순
-            var renualCost = ConvertMinerals(minerals);
+            var renualCost = ConvertMinerals(mMinerals);
 
             return Calculate(picks, renualCost);
         }
