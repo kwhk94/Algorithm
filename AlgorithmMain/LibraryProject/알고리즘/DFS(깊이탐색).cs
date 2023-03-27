@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace monoLibrary.알고리즘
+namespace monoLibrary
 {
     public class DFS<T>
     {
-        //DataNode 클래스를 가지고 깊이 탐색 알고리즘
+        //DataNode 클래스를 가지고 깊이우선탐색 알고리즘
         List<DataNode<T>> nodeList;
 
         Stack<DataNode<T>> stackDFS;
@@ -22,19 +22,23 @@ namespace monoLibrary.알고리즘
             nodeList.ForEach(node => node.marked = false);
 
             stackDFS = new Stack<DataNode<T>>();
+
         }
 
-        private bool DFS_Push(DataNode<T> _item)
+        private bool DFSPush(DataNode<T> _item)
         {
-            if (_item.marked) return false;
+            if (_item.marked == true) return false;
+
             _item.marked = true;
             stackDFS.Push(_item);
             return true;
+
         }
+
         public void SimpleDFS_showAllNode(int _startIndex)
         {
             // 스타트 노드 넣기
-            DFS_Push(nodeList[_startIndex]);
+            DFSPush(nodeList[_startIndex]);
 
             // 스택이 비어질 때 까지 확인
             while (stackDFS.Count > 0)
@@ -48,20 +52,21 @@ namespace monoLibrary.알고리즘
 
                 for (int i = 0; i < _adjacenteNodeCount; i++)
                 {
-                    DFS_Push(_currentNode.adjacentNode[i]);
+                    DFSPush(_currentNode.adjacentNode[i]);
                 }
             }
         }
+
         public void DFS_PathSearch(int _startIndex, int _targetIndex)
         {
             Console.WriteLine("start Node: " + nodeList[_startIndex].getNodeData.ToString());
             Console.WriteLine("target Node: " + nodeList[_targetIndex].getNodeData.ToString());
 
             // 스타트 노드 넣기
-            DFS_Push(nodeList[_startIndex]);
+            DFSPush(nodeList[_startIndex]);
 
             bool _bSearch = false;
-            // 큐가 비어질 때 까지 확인
+            // 스택이 비어질 때 까지 확인
             while (stackDFS.Count > 0 && _bSearch == false)
             {
                 var _currentNode = stackDFS.Pop();
@@ -72,7 +77,7 @@ namespace monoLibrary.알고리즘
                 for (int i = 0; i < _adjacenteNodeCount; i++)
                 {
 
-                    if (DFS_Push(_currentNode.adjacentNode[i]))
+                    if (DFSPush(_currentNode.adjacentNode[i]))
                     {
                         // 부모 노드 등록
                         _currentNode.adjacentNode[i].setParentNode = _currentNode;
@@ -100,5 +105,7 @@ namespace monoLibrary.알고리즘
 
 
         }
+
+
     }
 }
