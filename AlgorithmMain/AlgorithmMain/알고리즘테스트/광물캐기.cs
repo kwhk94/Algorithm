@@ -92,15 +92,14 @@ namespace AlgorithmMain.알고리즘테스트
             for (int i = 0; i < minerals.Length; i++)
             {
                 cost[i / 5] = ConvertMineral(cost[i / 5], minerals[i]);
-            }
-            return cost;
+            }            
+
+            return cost.OrderByDescending(x=>x.Cost).ToArray();
         }
         private int Calculate(int[] picks, CostStruct[] cost)
         {
             int result = 0;
             int index = 0;
-            int[] power = new int[3] { 25, 5, 1 };
-
             for (int i = 0; i < 3; i++)
             {
                 while (picks[i] > 0)

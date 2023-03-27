@@ -29,4 +29,7 @@ Console.WriteLine(t);
 t = test.solution(new int[3] { 0,1,1 }, new string[] { "diamond", "diamond", "diamond", "diamond", "diamond", "iron", "iron", "iron", "iron", "iron", "diamond" });
 Console.WriteLine(t);
 
+t = test.solution(new int[3] { 1,1,0 }, new string[] { "diamond", "diamond", "diamond", "iron", "iron", "diamond", "iron", "stone", "iron", "iron", "diamond", "diamond" });
+Console.WriteLine(t);
+
 #endregion
