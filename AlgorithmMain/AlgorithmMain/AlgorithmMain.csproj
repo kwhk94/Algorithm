@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="프로그래머스\과제진행하기.cs~RF6d45d0.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\LibraryProject\monoLibrary.csproj" />
   </ItemGroup>
 
