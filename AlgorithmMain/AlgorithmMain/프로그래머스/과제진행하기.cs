@@ -21,6 +21,7 @@ namespace AlgorithmMain.프로그래머스
         {
             string[] answer = new string[] { };
 
+            // 데이터 생성
             List<Plan> planList = new List<Plan>();
             for (int i = 0; i < plans.GetLength(0); i++)
             {
@@ -31,47 +32,58 @@ namespace AlgorithmMain.프로그래머스
                 }
                 planList.Add(new Plan(palnValue));
             }
+
             // 시작 시간을 기점으로 정렬
             planList = planList.OrderBy(x => x.GetStartTime).ToList();
 
+            // 결과를 가져갈 result 리스트
             List<string> result = new List<string>();
+
+            // 데이터를 넣고 빼면서 연산할 Stack
             Stack<Plan> ts = new Stack<Plan>();
             ts.Push(planList[0]);
+
+            // 경과 시간
             int currentTime = planList[0].GetStartTime;
-
+            // 경과 인덱스 --> 시작은 하나를 빼고 시작한다
             int index = 1;
-
             var t = ts.Pop();
+
             while (true)
             {
                 // pop 한게 시간이 더 적게걸리면 LIst에 넣는다
                 if (t.DelayTime(currentTime) <= planList[index].GetStartTime)
                 {
+                    // 계산 결과 먼저 빠져나온 것을 result에 넣어준다
                     result.Add(t.GetName);
                     currentTime = t.DelayTime(currentTime);
-                    //ts.Push(planList[index++]);
                 }
                 else
                 {
+                    //pop한 객체의 경과 시간값을 빼줘야한다
                     t.CalcPlayTime(planList[index].GetStartTime - currentTime);
                     currentTime = planList[index].GetStartTime;
+                    // pop한 것을 넣고 그 다음것을 넣는다
                     ts.Push(t);
                     ts.Push(planList[index++]);
                 }
-              
-                if(ts.Count == 0)
+
+                // 스택이 다 pop 되었다면 다음 것을 넣어주고 경과 시간을 갱신한다
+                if (ts.Count == 0)
                 {
                     currentTime = planList[index].GetStartTime;
                     ts.Push(planList[index++]);
                 }
+                // 데이터를 다 꺼냈으면 break하여 나가기
                 if (index >= planList.Count)
                 {
                     break;
                 }
-
-
+                // 스택에서 데이터를 하나 꺼낸다
                 t = ts.Pop();
             }
+
+            // 최종적으로 스택에 있는 데이터를 순서대로 꺼내 갱신
             while (ts.Count > 0)
             {
                 result.Add(ts.Pop().GetName);
