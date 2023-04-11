@@ -36,14 +36,21 @@ Console.WriteLine(t);
 #endregion
 
 #region ===== 과제진행하기
-string[,] vs = new string[,] 
-{
-    //{"korean", "11:40", "30"}, {"english", "12:10", "20"}, {"math", "12:30", "40"}
+//string[,] vs = new string[,] 
+//{
+//    //{"korean", "11:40", "30"}, {"english", "12:10", "20"}, {"math", "12:30", "40"}
 
-    {"science", "12:40", "50"}, {"music", "12:20", "40"}, {"history", "14:00", "30"}, {"computer", "12:30", "30"}
+//    {"science", "12:40", "50"}, {"music", "12:20", "40"}, {"history", "14:00", "30"}, {"computer", "12:30", "30"}
 
-};
-string[] result= 과제진행하기.solution(vs);
-Console.WriteLine(String.Join("  ", result));
+//};
+//string[] result= 과제진행하기.solution(vs);
+//Console.WriteLine(String.Join("  ", result));
+
+#endregion
+
+#region ===== Lv1
+
+SumIntegers sumIntegers = new SumIntegers();
+sumIntegers.solution(3, 5);
 
 #endregion
