@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace AlgorithmMain.프로그래머스
 {
-    internal class Lv1
-    {
-        
-    }
 
     public class SumIntegers
     {
@@ -28,12 +24,88 @@ namespace AlgorithmMain.프로그래머스
             int lower = a <= b ? a : b;
             int upper = a > b ? a : b;
 
-            for (int i = lower; i < upper; i++)
+            for (int i = lower; i <= upper; i++)
             {
                 answer += i;
             }
 
             return answer;
         }
+    }
+
+    public class KaKaopersonalitytype
+    {
+        /*
+         지표 번호	성격 유형
+        1번 지표	라이언형(R), 튜브형(T)
+        2번 지표	콘형(C), 프로도형(F)
+        3번 지표	제이지형(J), 무지형(M)
+        4번 지표	어피치형(A), 네오형(N)
+         */
+        Dictionary<string, int> mKakaoDic = new Dictionary<string, int>();
+
+        public string solution(string[] survey, int[] choices)
+        {
+            string answer = "";
+
+            mKakaoDic.Add("R", 0);
+            mKakaoDic.Add("T", 0);
+            mKakaoDic.Add("C", 0);
+            mKakaoDic.Add("F", 0);
+            mKakaoDic.Add("J", 0);
+            mKakaoDic.Add("M", 0);
+            mKakaoDic.Add("A", 0);
+            mKakaoDic.Add("N", 0);
+
+            for (int i = 0; i < survey.Length; i++)
+            {
+                Calculate(survey[i], choices[i]);
+            }
+
+            answer += Comparison("R", "T");
+            answer += Comparison("C", "F");
+            answer += Comparison("J", "M");
+            answer += Comparison("A", "N");
+
+            return answer;
+        }
+        
+        public void Calculate(string _surver, int _choice)
+        {
+            string nameFirst = _surver.Substring(0, 1);
+            string nameSecond = _surver.Substring(1, 1);
+            switch (_choice)
+            {
+                case 0:
+                    mKakaoDic[nameFirst] += 3;
+                    break;
+                case 1:
+                    mKakaoDic[nameFirst] += 2;
+                    break;
+                case 2:
+                    mKakaoDic[nameFirst] += 1;
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    mKakaoDic[nameSecond] += 1;
+                    break;
+                case 5:
+                    mKakaoDic[nameSecond] += 2;
+                    break;
+                case 6:
+                    mKakaoDic[nameSecond] += 3;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        public string Comparison(string _a, string _b)
+        {
+            return mKakaoDic[_a] >= mKakaoDic[_b] ? _a : _b;
+        }
+
     }
 }
