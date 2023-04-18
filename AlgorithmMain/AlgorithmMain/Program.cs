@@ -50,7 +50,12 @@ Console.WriteLine(t);
 
 #region ===== Lv1
 
-SumIntegers sumIntegers = new SumIntegers();
-sumIntegers.solution(3, 5);
+//SumIntegers sumIntegers = new SumIntegers();
+//sumIntegers.solution(3, 5)
 
+#endregion
+
+#region ===== 행렬의 곱 
+
+행렬의곱.solution(new int[,] { { 1, 4 }, { 3, 2 }, { 4, 1 } }, new int[,] { { 3, 3 }, { 3, 3 } }  );
 #endregion
